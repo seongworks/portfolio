@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="프로필 사진">
+  <rect width="900" height="1200" fill="#141414"/>
+  <g fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1">
+    <rect x="24.5" y="24.5" width="851" height="1151"/>
+    <line x1="24" y1="24" x2="876" y2="1176"/>
+    <line x1="876" y1="24" x2="24" y2="1176"/>
+  </g>
+  <text x="50%" y="600" text-anchor="middle" fill="rgba(255,255,255,.62)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="56" font-weight="600" letter-spacing="-.5">프로필 사진</text>
+  <text x="50%" y="670" text-anchor="middle" fill="rgba(255,255,255,.28)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="25" letter-spacing="4">PROFILE  ·  3:4</text>
+</svg>

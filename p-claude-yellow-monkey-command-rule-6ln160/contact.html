@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%230A0A0A%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22%23fff%22/%3E%3C/svg%3E">
+
+  <!-- 웹폰트 (인터넷 없이 쓰려면 이 줄을 지우세요 — 기본 폰트로 대체됩니다) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+
+  <!-- 순서 중요: 데이터 → 헤더/푸터 → 화면그리기 → 동작 -->
+  <script defer src="data/site.js"></script>
+  <script defer src="data/projects.js"></script>
+  <script defer src="assets/js/include.js"></script>
+  <script defer src="assets/js/render.js"></script>
+  <script defer src="assets/js/ui.js"></script>
+  <title>Contact — 송호성</title>
+  <meta name="description" content="송호성에게 연락하는 방법입니다.">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="page">
+  <section class="page-head container">
+    <span class="t-label">Contact</span>
+    <h1 class="t-h1">연락하기</h1>
+    <p>작업 의뢰, 협업, 그냥 궁금한 점 무엇이든 편하게 보내주세요. 최대한 빨리 답장드립니다.</p>
+  </section>
+
+  <div class="container">
+    <section class="contact-hero" data-reveal>
+      <span class="t-label">Say hello</span>
+      <br>
+      <a class="big" href="mailto:hosung@example.com" data-mail>hosung@example.com</a>
+    </section>
+
+    <!-- 아래 카드는 data/site.js 의 내용으로 자동 생성됩니다 -->
+    <div class="contact-grid" data-render="contact"></div>
+
+    <div style="padding:clamp(48px,7vw,96px) 0">
+      <a class="btn" href="work.html">작업 보러 가기 <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="청소년 문화축제 포스터">
+  <rect width="1200" height="900" fill="#141414"/>
+  <g fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1">
+    <rect x="24.5" y="24.5" width="1151" height="851"/>
+    <line x1="24" y1="24" x2="1176" y2="876"/>
+    <line x1="1176" y1="24" x2="24" y2="876"/>
+  </g>
+  <text x="50%" y="450" text-anchor="middle" fill="rgba(255,255,255,.62)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="56" font-weight="600" letter-spacing="-.5">청소년 문화축제 포스터</text>
+  <text x="50%" y="520" text-anchor="middle" fill="rgba(255,255,255,.28)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="25" letter-spacing="4">COVER  ·  4:3</text>
+</svg>

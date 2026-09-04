@@ -1,0 +1,276 @@
+/* ==========================================================
+   pages.css  —  페이지별 스타일
+   ========================================================== */
+
+/* ============ HOME : 히어로 ============================== */
+.hero {
+  min-height: clamp(560px, 92svh, 940px);
+  padding-top: calc(var(--header-h) + 40px);
+  padding-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero__label { display: block; margin-bottom: 26px; }
+
+.hero__title span { display: block; }
+.hero__title .line-2 { padding-left: clamp(0px, 8vw, 130px); }
+
+.hero__title em {
+  font-style: normal;
+  -webkit-text-stroke: 1px var(--point);
+  color: transparent;
+}
+
+.hero__meta {
+  margin-top: clamp(40px, 6vw, 72px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero__meta p { max-width: 40ch; }
+
+.hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.hero__scroll i {
+  display: block;
+  width: 34px; height: 1px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--point);
+  transform: translateX(-100%);
+  animation: scrollLine 2.2s var(--ease) infinite;
+}
+@keyframes scrollLine {
+  0%   { transform: translateX(-100%); }
+  55%  { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* ============ 작업 카드 =================================== */
+.card { display: block; }
+
+.card__thumb {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 3;
+}
+.card__thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .7s var(--ease), opacity .5s var(--ease);
+}
+.card:hover .card__thumb img { transform: scale(1.045); opacity: .82; }
+
+.card__num {
+  position: absolute;
+  top: 14px; left: 16px;
+  z-index: 2;
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--point);
+  mix-blend-mode: difference;
+}
+
+.card__body {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+}
+.card__title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--text);
+  transition: color .3s var(--ease);
+}
+.card:hover .card__title { color: var(--point); }
+
+.card__meta { font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+.card__cat { margin-top: 4px; font-size: 13px; color: var(--text-dim); }
+
+/* 홈의 대표 작업 — 첫 칸을 크게 */
+.grid--featured { grid-template-columns: repeat(2, 1fr); }
+.grid--featured .card:first-child { grid-column: 1 / -1; }
+.grid--featured .card:first-child .card__thumb { aspect-ratio: 16 / 8; }
+.grid--featured .card:first-child .card__title { font-size: clamp(20px, 2.4vw, 28px); }
+
+@media (max-width: 720px) {
+  .grid--featured { grid-template-columns: 1fr; }
+  .grid--featured .card:first-child .card__thumb { aspect-ratio: 4 / 3; }
+}
+
+/* ============ WORK : 필터 ================================= */
+.filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 32px 0;
+}
+.filter button {
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: all .3s var(--ease);
+}
+.filter button:hover { color: var(--point); border-color: var(--text-dim); }
+.filter button.is-active {
+  background: var(--point);
+  border-color: var(--point);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.empty { padding: 80px 0; text-align: center; color: var(--text-dim); }
+
+/* ============ PROJECT : 상세 ============================== */
+.project-head { padding: clamp(48px, 8vw, 96px) 0 clamp(32px, 4vw, 48px); }
+.project-head .t-label { display: block; margin-bottom: 18px; }
+
+.project-info {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  padding: clamp(32px, 4vw, 48px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.meta-list { display: grid; gap: 18px; align-content: start; }
+.meta-list > div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+.meta-list dt { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
+.meta-list dd { margin: 0; font-size: 15px; color: var(--point); }
+
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.project-gallery { display: grid; gap: clamp(16px, 2.4vw, 32px); padding: clamp(40px, 6vw, 80px) 0; }
+.project-gallery figure { margin: 0; }
+.project-gallery img { width: 100%; border-radius: var(--radius); background: var(--bg-soft); }
+.project-gallery figcaption { margin-top: 12px; font-size: 13px; color: var(--text-dim); }
+
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(32px, 5vw, 56px) 0;
+  border-top: 1px solid var(--line);
+}
+.project-nav a { font-size: 14px; font-weight: 600; color: var(--text-dim); }
+.project-nav a:hover { color: var(--point); }
+.project-nav a span { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+
+@media (max-width: 720px) {
+  .project-info { grid-template-columns: 1fr; }
+}
+
+/* ============ ABOUT ======================================= */
+.about-top {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  padding: clamp(48px, 7vw, 88px) 0;
+}
+.about-photo {
+  aspect-ratio: 3 / 4;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.about-intro p + p { margin-top: 20px; }
+
+.info-block { padding: clamp(36px, 5vw, 56px) 0; border-top: 1px solid var(--line); }
+.info-block__grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(20px, 4vw, 56px);
+}
+.info-block h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; }
+
+.line-list > li {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.line-list > li:first-child { padding-top: 0; }
+.line-list time { flex: 0 0 76px; font-size: 13px; color: var(--text-dim); }
+.line-list strong { display: block; font-weight: 600; color: var(--point); }
+.line-list small { font-size: 13px; color: var(--text-dim); }
+
+.skill-list { display: grid; gap: 22px; }
+.skill-list h3 { font-size: 15px; font-weight: 600; color: var(--point); margin-bottom: 10px; }
+.bar { height: 2px; background: var(--line); position: relative; border-radius: 2px; }
+.bar i { position: absolute; inset: 0 auto 0 0; background: var(--point); border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .about-top { grid-template-columns: 1fr; }
+  .about-photo { max-width: 320px; }
+  .info-block__grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ============ CONTACT ===================================== */
+.contact-hero { padding: clamp(56px, 9vw, 120px) 0; }
+.contact-hero a.big {
+  display: inline-block;
+  font-size: clamp(30px, 6.5vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  font-weight: 800;
+  color: var(--point);
+  margin-top: 24px;
+}
+.contact-hero a.big:hover { opacity: .55; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.contact-grid a, .contact-grid div {
+  background: var(--bg);
+  padding: 28px 24px;
+  transition: background .3s var(--ease);
+}
+.contact-grid a:hover { background: var(--bg-soft); }
+.contact-grid .t-label { display: block; margin-bottom: 10px; }
+.contact-grid strong { font-size: 16px; font-weight: 600; color: var(--point); }
+
+@media (max-width: 720px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}

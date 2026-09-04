@@ -1,0 +1,174 @@
+/* ==========================================================
+   base.css  —  색 · 폰트 · 기본 스타일
+   ★ 사이트 전체 색/폰트를 바꾸려면 아래 :root 값만 수정하세요.
+   ========================================================== */
+
+:root {
+  /* ---- 색 (검정 메인 · 흰색 포인트) ---------------------- */
+  --bg:        #0A0A0A;              /* 배경 — 완전 검정보다 살짝 밝게 */
+  --bg-soft:   #141414;              /* 카드 · 박스 배경 */
+  --point:     #FFFFFF;              /* 포인트 — 제목, 호버, 강조 */
+  --text:      rgba(255,255,255,.72);/* 본문 */
+  --text-dim:  rgba(255,255,255,.42);/* 캡션, 연도 */
+  --line:      rgba(255,255,255,.12);/* 구분선, 테두리 */
+
+  /* ---- 폰트 --------------------------------------------- */
+  --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+          "Malgun Gothic", "맑은 고딕", sans-serif;
+
+  /* ---- 크기 · 간격 --------------------------------------- */
+  --max:      1280px;   /* 콘텐츠 최대 너비 */
+  --gutter:   24px;     /* 좌우 여백 */
+  --header-h: 72px;
+  --radius:   4px;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---- 리셋 ------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: -.01em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, figure, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .3s var(--ease), opacity .3s var(--ease);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--point);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--point); color: var(--bg); }
+
+/* ---- 타이포 ---------------------------------------------- */
+.t-display {                       /* 히어로 초대형 제목 */
+  font-size: clamp(44px, 11vw, 148px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  font-weight: 800;
+  color: var(--point);
+}
+
+.t-h1 {
+  font-size: clamp(32px, 5.5vw, 60px);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  font-weight: 700;
+  color: var(--point);
+}
+
+.t-h2 {
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.25;
+  letter-spacing: -.03em;
+  font-weight: 700;
+  color: var(--point);
+}
+
+.t-h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+  font-weight: 600;
+  color: var(--point);
+}
+
+.t-body { font-size: 16px; }
+.t-body-lg { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.75; }
+
+.t-label {                         /* 작은 대문자 라벨 */
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.t-dim { color: var(--text-dim); }
+.t-point { color: var(--point); }
+
+/* ---- 공통 부품 -------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--point);
+  transition: background .3s var(--ease), color .3s var(--ease),
+              border-color .3s var(--ease);
+}
+.btn:hover {
+  background: var(--point);
+  border-color: var(--point);
+  color: var(--bg);
+}
+
+.btn-arrow { transition: transform .3s var(--ease); }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+.tag {
+  display: inline-block;
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .01em;
+  color: var(--text);
+}
+
+/* 링크로 쓰이는 태그 (작업 상세의 분류) */
+a.tag:hover { border-color: var(--point); color: var(--point); }
+
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ---- 스크롤 등장 효과 -------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

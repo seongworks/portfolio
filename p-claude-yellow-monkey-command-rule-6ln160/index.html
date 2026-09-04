@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%230A0A0A%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22%23fff%22/%3E%3C/svg%3E">
+
+  <!-- 웹폰트 (인터넷 없이 쓰려면 이 줄을 지우세요 — 기본 폰트로 대체됩니다) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+
+  <!-- 순서 중요: 데이터 → 헤더/푸터 → 화면그리기 → 동작 -->
+  <script defer src="data/site.js"></script>
+  <script defer src="data/projects.js"></script>
+  <script defer src="assets/js/include.js"></script>
+  <script defer src="assets/js/render.js"></script>
+  <script defer src="assets/js/ui.js"></script>
+  <title>송호성 — 콘텐츠 디자인 포트폴리오</title>
+  <meta name="description" content="콘텐츠 디자인을 공부하는 고등학생 송호성의 포트폴리오입니다.">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ============ 히어로 ============ -->
+  <section class="hero container">
+    <span class="t-label hero__label" data-reveal>Portfolio 2026</span>
+
+    <h1 class="t-display hero__title">
+      <span data-reveal data-delay="80">SONG</span>
+      <span class="line-2" data-reveal data-delay="180"><em>HOSUNG</em></span>
+    </h1>
+
+    <div class="hero__meta" data-reveal data-delay="300">
+      <p class="t-body-lg">
+        콘텐츠 디자인을 공부하는 고등학생입니다.<br>
+        보는 사람이 <span class="t-point">3초 안에 이해하는 화면</span>을 만듭니다.
+      </p>
+      <span class="hero__scroll"><i></i> Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============ 대표 작업 ============ -->
+  <section class="section container">
+    <div class="section-head" data-reveal>
+      <h2 class="t-h2">Selected Work</h2>
+      <a class="btn" href="work.html">전체 작업 보기 <span class="btn-arrow">→</span></a>
+    </div>
+
+    <div class="grid grid--featured" data-render="featured"></div>
+  </section>
+
+  <!-- ============ 짧은 소개 ============ -->
+  <section class="section-sm container">
+    <hr class="rule">
+    <div class="info-block">
+      <div class="info-block__grid">
+        <h2>About</h2>
+        <div data-reveal>
+          <p class="t-body-lg">
+            축제 포스터를 만들다 시작해, 지금은 광고 · 포스터와 캐릭터 작업을 주로 합니다.
+            화려한 장식보다 <span class="t-point">정보의 순서</span>를 정리하는 일이 더 재미있습니다.
+          </p>
+          <div class="tag-row" style="margin-top:28px">
+            <span class="tag">Photoshop</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">광고 · 포스터</span>
+            <span class="tag">캐릭터</span>
+            <span class="tag">웹 디자인</span>
+          </div>
+          <p style="margin-top:32px">
+            <a class="btn" href="about.html">더 알아보기 <span class="btn-arrow">→</span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+</body>
+</html>
