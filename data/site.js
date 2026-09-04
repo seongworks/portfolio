@@ -10,12 +10,12 @@ const SITE = {
   role:    "콘텐츠 디자인",
   roleEn:  "Content Design",
 
-  email:   "hosung@example.com",     // ← 실제 이메일로 바꾸세요
+  email:   "seongworks@gmail.com",   // ← 연락받을 이메일
   phone:   "",                       // 비워두면 표시되지 않습니다
 
   // 링크 — url 을 비워두면 그 항목은 표시되지 않습니다
   sns: [
-    { label: "Instagram", url: "https://instagram.com/",  handle: "@hosung" },
+    { label: "Instagram", url: "https://instagram.com/songhoseong03", handle: "@songhoseong03" },
     { label: "Behance",   url: "https://behance.net/",    handle: "/hosung" },
     { label: "Notion",    url: "",                        handle: "" }
   ],
