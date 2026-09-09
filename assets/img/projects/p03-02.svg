@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="동아리 소개 웹페이지">
+  <rect width="1600" height="1000" fill="#141414"/>
+  <g fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1">
+    <rect x="24.5" y="24.5" width="1551" height="951"/>
+    <line x1="24" y1="24" x2="1576" y2="976"/>
+    <line x1="1576" y1="24" x2="24" y2="976"/>
+  </g>
+  <text x="50%" y="500" text-anchor="middle" fill="rgba(255,255,255,.62)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="62" font-weight="600" letter-spacing="-.5">동아리 소개 웹페이지</text>
+  <text x="50%" y="576" text-anchor="middle" fill="rgba(255,255,255,.28)"
+        font-family="Pretendard, -apple-system, 'Malgun Gothic', sans-serif"
+        font-size="27" letter-spacing="4">DETAIL 02</text>
+</svg>
