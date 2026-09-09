@@ -6,6 +6,17 @@
   <meta name="theme-color" content="#0A0A0A">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%230A0A0A%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22%23fff%22/%3E%3C/svg%3E">
 
+  <!-- ★ 안전장치 (지우지 마세요)
+       1) 자바스크립트가 살아 있을 때만 등장 효과를 켭니다.
+       2) data/*.js 등에 오류가 나면 숨겨둔 글을 도로 보이게 되돌립니다.
+       덕분에 편집 중 실수를 해도 화면이 백지가 되지 않습니다. -->
+  <script>
+    document.documentElement.classList.add("js");
+    window.addEventListener("error", function () {
+      document.documentElement.classList.add("js-broken");
+    });
+  </script>
+
   <!-- 웹폰트 (인터넷 없이 쓰려면 이 줄을 지우세요 — 기본 폰트로 대체됩니다) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
@@ -21,6 +32,20 @@
   <script defer src="assets/js/ui.js"></script>
   <title>송호성 — 콘텐츠 디자인 포트폴리오</title>
   <meta name="description" content="콘텐츠 디자인을 공부하는 고등학생 송호성의 포트폴리오입니다.">
+
+  <!-- 카카오톡 · 인스타 DM 등에 주소를 붙였을 때 보이는 미리보기 카드 -->
+  <!-- ※ 나중에 개인 도메인을 쓰게 되면 아래 주소 앞부분만 바꾸면 됩니다 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="송호성 포트폴리오">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="송호성 — 콘텐츠 디자인 포트폴리오">
+  <meta property="og:description" content="콘텐츠 디자인을 공부하는 고등학생 송호성의 포트폴리오입니다.">
+  <meta property="og:url" content="https://seongworks.github.io/portfolio/">
+  <meta property="og:image" content="https://seongworks.github.io/portfolio/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="숲나무 간판 — 송호성 포트폴리오">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
