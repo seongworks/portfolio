@@ -111,5 +111,33 @@ const PROJECTS = [
       { src: "assets/img/projects/p04-02.svg", caption: "타이포 디테일" }
     ],
     featured: false
+  },
+
+  {
+    id: "p05",
+    title: "8등신 캐릭터",
+    category: "캐릭터",
+    year: "2026",
+    cover: "assets/img/projects/p05-cover.jpg",
+
+    /* ★ 아직 안 쓴 부분 — 나중에 여기만 채우면 됩니다.
+       summary     : 목록과 상세 페이지 위쪽에 나오는 한 줄 소개
+       description : 상세 페이지 본문. 문단 하나가 "문장" 한 줄입니다.
+       비워두면 그 자리는 화면에 아예 나오지 않으니, 지금 상태로도
+       어색하지 않게 보입니다.                                        */
+    summary: "",
+    description: [],
+
+    tools: ["Illustrator", "Photoshop"],
+
+    /* 캐릭터 시트 한 장이 작업 전체라, 목록의 작은 썸네일로는 설정글이
+       안 읽힙니다. 그래서 상세 페이지에서 같은 그림을 크게 다시 보여줍니다.
+       나중에 다른 컷(표정·포즈·러프 등)을 p05-01.jpg 같은 이름으로 올리고
+       아래에 줄을 추가하면 이어서 나옵니다.                            */
+    images: [
+      { src: "assets/img/projects/p05-cover.jpg", caption: "무면인(無面人) 캐릭터 시트" }
+    ],
+
+    featured: true
   }
 ];
