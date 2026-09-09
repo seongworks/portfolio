@@ -179,6 +179,13 @@
 
 .project-gallery { display: grid; gap: clamp(16px, 2.4vw, 32px); padding: clamp(40px, 6vw, 80px) 0; }
 .project-gallery figure { margin: 0; }
+
+/* 아직 올리지 않은 이미지는 감춥니다 (render.js 가 확인 후 풀어줍니다).
+   보여줄 이미지가 하나도 없으면 갤러리 영역 자체가 사라져
+   빈 여백만 남지 않습니다. display:grid 를 이겨야 하므로 !important 대신
+   더 구체적인 선택자를 씁니다. */
+.project-gallery figure[data-pending] { display: none; }
+section.project-gallery[hidden] { display: none; }
 .project-gallery img { width: 100%; border-radius: var(--radius); background: var(--bg-soft); }
 .project-gallery figcaption { margin-top: 12px; font-size: 13px; color: var(--text-dim); }
 
@@ -260,7 +267,9 @@
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 카드 개수만큼만 칸을 만듭니다 — SNS 를 지워도 빈 칸이 남지 않습니다.
+     (--cols 는 render.js 가 실제 개수로 채워줍니다) */
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);

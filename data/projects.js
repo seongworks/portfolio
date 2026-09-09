@@ -32,14 +32,26 @@ const PROJECTS = [
     title: "숲나무",
     category: ["광고 · 포스터 · 간판", "공모전"],
     year: "2025",
-    cover: "assets/img/projects/p01-cover.png",
+    cover: "assets/img/projects/p01-cover.jpg",
     summary: "제24회 아름다운 간판 공모전 특별상 — 숲을 나무 한 그루에 담은 간판",
     description: [
       "'숲나무'의 간판 디자인입니다. 제24회 아름다운 간판 공모전에 출품해 특별상을 받았습니다.",
       "가게 이름 그대로, 여러 그루가 모인 숲을 나무 한 그루의 선 안에 담았습니다. 가지를 가로선으로 단순화해 멀리서도 형태가 무너지지 않게 하고, 나무 아래에 손으로 쓴 듯한 상호를 두어 간판 전체가 하나의 그림처럼 읽히도록 했습니다."
     ],
     tools: ["Illustrator"],
-    images: [],
+
+    /* ★ 이미지 자리를 미리 만들어 뒀습니다.
+       assets/img/projects/ 폴더에 아래 이름 그대로 올리기만 하면
+       그때부터 상세 페이지에 자동으로 나타납니다.
+         p01-01.jpg  p01-02.jpg  p01-03.jpg
+       - 아직 안 올린 줄은 화면에 아무것도 표시되지 않습니다 (깨진 아이콘 X)
+       - 필요 없는 줄은 지우고, 더 넣고 싶으면 같은 형식으로 추가하세요
+       - caption 은 사진 아래 설명입니다. 비우려면 "" 로 두세요           */
+    images: [
+      { src: "assets/img/projects/p01-01.jpg", caption: "간판 전체 모습" },
+      { src: "assets/img/projects/p01-02.jpg", caption: "나무 그래픽 디테일" },
+      { src: "assets/img/projects/p01-03.jpg", caption: "설치된 현장" }
+    ],
     featured: true
   },
 

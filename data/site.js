@@ -16,7 +16,10 @@ const SITE = {
   // 링크 — url 을 비워두면 그 항목은 표시되지 않습니다
   sns: [
     { label: "Instagram", url: "https://instagram.com/songhoseong03", handle: "@songhoseong03" },
-    { label: "Behance",   url: "https://behance.net/",    handle: "/hosung" },
+
+    // ↓ Behance 는 프로필 주소가 아니라 사이트 첫 화면으로 가고 있어서 비워뒀습니다.
+    //   실제 주소(예: https://www.behance.net/내아이디)를 url 에 넣으면 다시 표시됩니다.
+    { label: "Behance",   url: "",                        handle: "" },
     { label: "Notion",    url: "",                        handle: "" }
   ],
 

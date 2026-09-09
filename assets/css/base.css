@@ -159,16 +159,24 @@ a.tag:hover { border-color: var(--point); color: var(--point); }
 
 .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
 
-/* ---- 스크롤 등장 효과 -------------------------------------- */
-[data-reveal] {
+/* ---- 스크롤 등장 효과 --------------------------------------
+   ★ 안전장치가 걸려 있습니다.
+   글을 숨기는 건 "자바스크립트가 정상일 때(.js)" 뿐입니다.
+   - 자바스크립트가 꺼져 있으면      → .js 가 안 붙으므로 그냥 다 보입니다
+   - 스크립트에 오류가 나면(.js-broken) → 숨긴 걸 도로 되돌립니다
+   덕분에 data/*.js 를 편집하다 실수해도 화면이 백지가 되지 않습니다.
+   -------------------------------------------------------- */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity .8s var(--ease), transform .8s var(--ease);
 }
-[data-reveal].is-in { opacity: 1; transform: none; }
+/* 아래 두 줄이 "다시 보이게" 하는 규칙 — 위와 우선순위가 같으므로 나중에 적어야 이깁니다 */
+[data-reveal].is-in,
+.js-broken [data-reveal] { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
