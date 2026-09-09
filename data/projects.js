@@ -49,7 +49,7 @@ const PROJECTS = [
        - caption 은 사진 아래 설명입니다. 비우려면 "" 로 두세요           */
     images: [
       { src: "assets/img/projects/p01-01.jpg", caption: "간판 전체 모습" },
-      { src: "assets/img/projects/p01-02.jpg", caption: "건물에 적용한 모습" },
+      { src: "assets/img/projects/p01-02.jpg", caption: "간판 목업" },
       { src: "assets/img/projects/p01-03.jpg", caption: "설치된 현장" }
     ],
     featured: true
