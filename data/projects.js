@@ -57,7 +57,7 @@ const PROJECTS = [
 
   {
     id: "p02",
-    title: "학교 마스코트 캐릭터",
+    title: "샘샘이와 룡룡이",
     category: ["캐릭터", "공모전"],          // ← 두 필터 모두에 표시됩니다
     year: "2026",
     cover: "assets/img/projects/p02-cover.svg",
