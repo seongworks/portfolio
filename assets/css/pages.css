@@ -178,21 +178,25 @@
 .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
 /* ---- 상세 페이지 갤러리 ----------------------------------
-   ★ 이미지는 "가로를 꽉 채우는" 게 아니라 "한 화면에 들어오는" 것이
-     기준입니다. 가로·세로 어느 쪽도 넘치지 않게 맞추므로,
-     세로로 긴 그림은 저절로 좁아지고 가로로 긴 그림은 넓어집니다.
-     → 액자(figure)가 그림 크기에 맞춰 줄어들고 가운데로 모입니다.
+   ★ 모든 그림의 "세로 높이를 똑같이" 맞추고 가로만 그림 비율대로
+     달라지게 합니다. 그래서 자료가 한 줄에 나란히 놓이고,
+     스크롤 없이 한눈에 들어옵니다.
+     - 세로로 긴 시트  → 좁고 길쭉하게
+     - 가로로 긴 목업  → 넓고 납작하게
+     자세히 볼 때는 눌러서 원본을 열면 되므로 작게 두는 편이 낫습니다.
    -------------------------------------------------------- */
 .project-gallery {
-  display: grid;
-  justify-items: center;               /* 그림 크기가 제각각이어도 가운데 정렬 */
-  gap: clamp(32px, 4.5vw, 64px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;           /* 오른쪽 정렬 — 차례대로 오른쪽부터 채웁니다 */
+  align-items: flex-start;             /* 캡션 길이가 달라도 그림 윗줄은 맞음 */
+  gap: clamp(18px, 2vw, 28px);
   padding: clamp(40px, 6vw, 80px) 0;
 }
 .project-gallery figure {
   margin: 0;
-  width: fit-content;                  /* 액자가 그림 폭만큼만 차지 → 캡션도 따라 붙음 */
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 아직 올리지 않은 이미지는 감춥니다 (render.js 가 확인 후 풀어줍니다).
@@ -204,37 +208,53 @@ section.project-gallery[hidden] { display: none; }
 
 .project-gallery img {
   display: block;
+  /* ★ 세로는 고정, 가로는 그림 비율대로 — 이 두 줄이 정렬의 핵심입니다.
+     높이 숫자만 바꾸면 갤러리 전체 크기가 한 번에 조절됩니다. */
+  height: clamp(170px, 22vw, 300px);
   width: auto;
-  height: auto;
-  max-width: 100%;                     /* 가로 넘침 방지 */
-  max-height: 78vh;                    /* 세로 넘침 방지 — 한 화면에 담기게 */
-  max-height: 78svh;                   /* 주소창이 접혔다 펴지는 휴대폰 대응 */
+  max-width: 100%;                     /* 아주 좁은 화면 대비 */
+  object-fit: contain;                 /* 위 제한에 걸려도 비율이 찌그러지지 않게 */
   border-radius: var(--radius);
   background: var(--bg-soft);
 }
 
-/* 화면에 맞춰 줄인 만큼 잔글씨는 작아지므로, 눌러서 원본을 열 수 있게 합니다. */
+/* 작게 줄여 놓았으므로 자세히 볼 때는 눌러서 원본을 엽니다.
+   그림이 작아 배지가 크게 느껴지지 않도록, 마우스를 올렸을 때만 보여줍니다. */
 .project-gallery .shot { display: block; position: relative; }
 .project-gallery .shot::after {
   content: "원본 보기";
   position: absolute;
-  right: 12px; bottom: 12px;
-  padding: 7px 13px;
+  inset: auto 8px 8px auto;
+  padding: 5px 10px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: .06em;
   color: var(--point);
-  background: rgba(10, 10, 10, .66);
+  background: rgba(10, 10, 10, .72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  opacity: .5;
+  opacity: 0;
   transition: opacity .3s var(--ease);
   pointer-events: none;
 }
 .project-gallery .shot:hover::after,
 .project-gallery .shot:focus-visible::after { opacity: 1; }
 
-.project-gallery figcaption { margin-top: 12px; font-size: 13px; color: var(--text-dim); }
+/* 손가락으로 쓰는 화면에는 hover 가 없으므로 항상 흐리게 띄워 둡니다. */
+@media (hover: none) {
+  .project-gallery .shot::after { opacity: .55; }
+}
+
+/* width:0 + min-width:100% — 캡션이 길어도 액자 폭을 넓히지 않게 하는 장치입니다.
+   이게 없으면 긴 캡션 때문에 그림 사이 간격이 들쭉날쭉해집니다. */
+.project-gallery figcaption {
+  width: 0;
+  min-width: 100%;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
 
 .project-nav {
   display: flex;
