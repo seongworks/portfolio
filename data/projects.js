@@ -61,16 +61,23 @@ const PROJECTS = [
     category: ["캐릭터", "공모전"],          // ← 두 필터 모두에 표시됩니다
     year: "2026",
     cover: "assets/img/projects/p02-cover.svg",
-    summary: "교내 캐릭터 공모전 출품작 — 표정 8종과 굿즈 활용안",
+    summary: "교재 공모전에 낸 창작 캐릭터 — 샘샘이와 룡룡이",
+
+    /* 사진을 올리고 나면 여기에 문단을 더 붙이면 됩니다.
+       (어떤 교재였는지, 두 캐릭터를 어떻게 다르게 그렸는지 등)         */
     description: [
-      "교내 마스코트 공모전에 낸 캐릭터입니다. 학교 상징인 은행나무에서 형태를 따와, 단순한 원과 곡선만으로 그렸습니다.",
-      "누가 그려도 비슷하게 나오도록 비율 가이드를 만들고, 스티커·굿즈에 쓰일 것을 감안해 표정 8종과 흑백 버전까지 함께 정리했습니다."
+      "교재 공모전에 출품한 캐릭터입니다. 기존 상징이나 있는 캐릭터를 빌리지 않고, 샘샘이와 룡룡이 두 캐릭터를 처음부터 만들었습니다."
     ],
     tools: ["Illustrator", "Photoshop"],
+
+    /* 아직 자리표시(회색) 이미지입니다.
+       실제 그림을 p02-cover.jpg / p02-01.jpg … 로 올린 뒤
+       아래 .svg 를 .jpg 로 바꾸면 그때부터 진짜 그림이 나옵니다.
+       caption 은 그림을 보고 채우면 됩니다 — 비워두면 표시되지 않습니다. */
     images: [
-      { src: "assets/img/projects/p02-01.svg", caption: "기본형과 비율 가이드" },
-      { src: "assets/img/projects/p02-02.svg", caption: "표정 8종" },
-      { src: "assets/img/projects/p02-03.svg", caption: "굿즈 적용 목업" }
+      { src: "assets/img/projects/p02-01.svg", caption: "" },
+      { src: "assets/img/projects/p02-02.svg", caption: "" },
+      { src: "assets/img/projects/p02-03.svg", caption: "" }
     ],
     featured: true
   },
