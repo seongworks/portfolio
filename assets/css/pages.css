@@ -177,8 +177,23 @@
 
 .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
-.project-gallery { display: grid; gap: clamp(16px, 2.4vw, 32px); padding: clamp(40px, 6vw, 80px) 0; }
-.project-gallery figure { margin: 0; }
+/* ---- 상세 페이지 갤러리 ----------------------------------
+   ★ 이미지는 "가로를 꽉 채우는" 게 아니라 "한 화면에 들어오는" 것이
+     기준입니다. 가로·세로 어느 쪽도 넘치지 않게 맞추므로,
+     세로로 긴 그림은 저절로 좁아지고 가로로 긴 그림은 넓어집니다.
+     → 액자(figure)가 그림 크기에 맞춰 줄어들고 가운데로 모입니다.
+   -------------------------------------------------------- */
+.project-gallery {
+  display: grid;
+  justify-items: center;               /* 그림 크기가 제각각이어도 가운데 정렬 */
+  gap: clamp(32px, 4.5vw, 64px);
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+.project-gallery figure {
+  margin: 0;
+  width: fit-content;                  /* 액자가 그림 폭만큼만 차지 → 캡션도 따라 붙음 */
+  max-width: 100%;
+}
 
 /* 아직 올리지 않은 이미지는 감춥니다 (render.js 가 확인 후 풀어줍니다).
    보여줄 이미지가 하나도 없으면 갤러리 영역 자체가 사라져
@@ -186,7 +201,39 @@
    더 구체적인 선택자를 씁니다. */
 .project-gallery figure[data-pending] { display: none; }
 section.project-gallery[hidden] { display: none; }
-.project-gallery img { width: 100%; border-radius: var(--radius); background: var(--bg-soft); }
+
+.project-gallery img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;                     /* 가로 넘침 방지 */
+  max-height: 78vh;                    /* 세로 넘침 방지 — 한 화면에 담기게 */
+  max-height: 78svh;                   /* 주소창이 접혔다 펴지는 휴대폰 대응 */
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+/* 화면에 맞춰 줄인 만큼 잔글씨는 작아지므로, 눌러서 원본을 열 수 있게 합니다. */
+.project-gallery .shot { display: block; position: relative; }
+.project-gallery .shot::after {
+  content: "원본 보기";
+  position: absolute;
+  right: 12px; bottom: 12px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--point);
+  background: rgba(10, 10, 10, .66);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: .5;
+  transition: opacity .3s var(--ease);
+  pointer-events: none;
+}
+.project-gallery .shot:hover::after,
+.project-gallery .shot:focus-visible::after { opacity: 1; }
+
 .project-gallery figcaption { margin-top: 12px; font-size: 13px; color: var(--text-dim); }
 
 .project-nav {

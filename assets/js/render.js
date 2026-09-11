@@ -248,10 +248,15 @@
 
         // data-pending: 파일이 실제로 있는지 확인될 때까지 감춰둡니다.
         // (여기서는 loading="lazy" 를 쓰지 않습니다 — 감춰진 채로는 확인이 안 되기 때문)
+        // 그림은 화면에 맞춰 줄여 보여주므로, 눌러서 원본을 열 수 있게 링크로 감쌉니다.
         var gallery = (p.images || []).map(function (img, n) {
+          var alt = esc(p.title) + " 이미지 " + (n + 1);
           return (
             '<figure data-reveal data-pending>' +
-              '<img src="' + esc(img.src) + '" alt="' + esc(p.title) + " 이미지 " + (n + 1) + '" data-check>' +
+              '<a class="shot" href="' + esc(img.src) + '" target="_blank" rel="noopener"' +
+                ' aria-label="' + alt + ' 원본 크기로 보기">' +
+                '<img src="' + esc(img.src) + '" alt="' + alt + '" data-check>' +
+              "</a>" +
               (img.caption ? "<figcaption>" + esc(img.caption) + "</figcaption>" : "") +
             "</figure>"
           );
