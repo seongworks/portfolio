@@ -161,11 +161,12 @@ const PROJECTS = [
 
     tools: ["Illustrator", "Photoshop"],
 
-    /* 시트 한 장이 작업 전체라 상세 페이지에서 같은 그림을 크게 다시 보여줍니다.
-       나중에 부분 컷을 p06-01.jpg 같은 이름으로 올리고 아래에 줄을 추가하면
-       이어서 나옵니다.                                                  */
+    /* 시트를 먼저 크게 보여주고, 시트 안에서는 작게 들어가 있던 굿즈 목업을
+       뒤이어 원래 크기로 보여줍니다.                                      */
     images: [
-      { src: "assets/img/projects/p06-cover.jpg", caption: "캐릭터 시트 — 턴어라운드 · 표정 6종 · 굿즈 목업" }
+      { src: "assets/img/projects/p06-cover.jpg", caption: "캐릭터 시트 — 턴어라운드 · 표정 6종 · 굿즈 목업" },
+      { src: "assets/img/projects/p06-01.jpg",    caption: "굿즈 적용 — 키링" },
+      { src: "assets/img/projects/p06-02.jpg",    caption: "굿즈 적용 — 티셔츠" }
     ],
 
     featured: false
