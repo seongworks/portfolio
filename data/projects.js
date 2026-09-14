@@ -170,5 +170,56 @@ const PROJECTS = [
     ],
 
     featured: false
+  },
+
+  {
+    id: "p07",
+    title: "닭 이모티콘",
+    category: "캐릭터",
+    year: "2025",
+    cover: "assets/img/projects/p07-cover.jpg",
+
+    summary: "메신저용 이모티콘 22종 — 근육질 닭 한 마리로 감정을 다 말하기",
+    description: [
+      "메신저에서 쓰는 이모티콘 22종입니다. 근육질 몸에 회색 치마를 입은 닭 한 마리로 '사랑해용', '분노', '혼란', '잘자~' 같은 일상 대화의 감정을 나눠 담았습니다.",
+      "대화창에서는 아주 작게 뜨는 그림이라 요소를 줄였습니다. 흰 몸에 굵은 외곽선, 붉은 볏과 노란 부리, 회색 치마 — 색을 다섯 가지 안쪽으로 묶어 두면 손톱만 한 크기로 떠도 무엇인지 바로 알아볼 수 있습니다.",
+      "표정만으로 모자란 감정은 글자와 자세로 보탰습니다. '하하하하'를 화면 가득 깔고, 문틈으로 몸을 반쯤 내밀고, 팔을 벌린 채 늘어지는 식으로 — 같은 캐릭터 하나가 스물두 번 다르게 읽히도록 만들었습니다."
+    ],
+
+    tools: ["Illustrator", "Photoshop"],
+
+    /* gallery: "tiles"
+       이모티콘처럼 개수가 많고 낱개가 작은 작업은 타일형으로 깝니다.
+       - 한 줄에 여러 개가 들어가고
+       - 밝은 바탕 위에 놓여 외곽선과 글자가 묻히지 않습니다
+       (색을 바꾸려면 assets/css/pages.css 의 --tile 한 줄)            */
+    gallery: "tiles",
+
+    images: [
+      { src: "assets/img/projects/p07-01.png", caption: "" },
+      { src: "assets/img/projects/p07-02.png", caption: "" },
+      { src: "assets/img/projects/p07-03.png", caption: "" },
+      { src: "assets/img/projects/p07-04.png", caption: "" },
+      { src: "assets/img/projects/p07-05.png", caption: "" },
+      { src: "assets/img/projects/p07-06.png", caption: "" },
+      { src: "assets/img/projects/p07-07.png", caption: "" },
+      { src: "assets/img/projects/p07-08.png", caption: "" },
+      { src: "assets/img/projects/p07-09.png", caption: "" },
+      { src: "assets/img/projects/p07-10.png", caption: "" },
+      { src: "assets/img/projects/p07-11.png", caption: "" },
+      { src: "assets/img/projects/p07-12.png", caption: "" },
+      { src: "assets/img/projects/p07-13.png", caption: "" },
+      { src: "assets/img/projects/p07-14.png", caption: "" },
+      { src: "assets/img/projects/p07-15.png", caption: "" },
+      { src: "assets/img/projects/p07-16.png", caption: "" },
+      { src: "assets/img/projects/p07-17.png", caption: "" },
+      { src: "assets/img/projects/p07-18.png", caption: "" },
+      { src: "assets/img/projects/p07-19.png", caption: "" },
+      { src: "assets/img/projects/p07-20.png", caption: "" },
+      { src: "assets/img/projects/p07-21.png", caption: "" },
+      { src: "assets/img/projects/p07-22.png", caption: "" }
+    ],
+
+    featured: false
   }
 ];
