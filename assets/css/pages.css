@@ -188,7 +188,7 @@
 .project-gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;           /* 오른쪽 정렬 — 차례대로 오른쪽부터 채웁니다 */
+  justify-content: flex-start;         /* 왼쪽 정렬 — 제목·본문과 같은 축에서 시작합니다 */
   align-items: flex-start;             /* 캡션 길이가 달라도 그림 윗줄은 맞음 */
   gap: clamp(18px, 2vw, 28px);
   padding: clamp(40px, 6vw, 80px) 0;
