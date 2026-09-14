@@ -288,7 +288,10 @@
               "</dl>" +
             "</section>" +
 
-            '<section class="project-gallery" hidden>' + gallery + "</section>" +
+            // gallery: "tiles" 를 적어둔 작업은 이모티콘·스티커처럼
+            // 작게, 밝은 바탕 위에 격자로 깔립니다. (data/projects.js 참고)
+            '<section class="project-gallery' +
+              (p.gallery === "tiles" ? " is-tiles" : "") + '" hidden>' + gallery + "</section>" +
 
             '<nav class="project-nav">' + link(prev, "Previous") + link(next, "Next") + "</nav>" +
           "</div>";

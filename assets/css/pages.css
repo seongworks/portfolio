@@ -256,6 +256,19 @@ section.project-gallery[hidden] { display: none; }
   color: var(--text-dim);
 }
 
+/* ---- 타일형 갤러리 (이모티콘 · 스티커) --------------------
+   data/projects.js 에서 gallery: "tiles" 를 적은 작업에만 적용됩니다.
+   ① 개수가 많으므로 더 작게 → 한 줄에 여러 개가 깔립니다
+   ② 배경이 밝습니다. 이모티콘은 보통 밝은 화면(메신저)을 기준으로
+      그리기 때문에, 검은 바탕에 그대로 두면 외곽선과 글자가 묻힙니다.
+      → 타일 색만 바꾸고 싶으면 아래 --tile 값 한 줄만 고치면 됩니다.
+   -------------------------------------------------------- */
+.project-gallery.is-tiles { --tile: #EDEDED; gap: clamp(10px, 1.2vw, 18px); }
+.project-gallery.is-tiles img {
+  height: clamp(104px, 12.5vw, 164px);
+  background: var(--tile);
+}
+
 .project-nav {
   display: flex;
   justify-content: space-between;
