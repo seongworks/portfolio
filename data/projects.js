@@ -70,12 +70,11 @@ const PROJECTS = [
     ],
     tools: ["Illustrator", "Photoshop"],
 
-    /* 지금은 시트 한 장이 작업 전체라, 목록의 작은 썸네일로는 삼면도가
-       잘 안 보여 상세 페이지에서 같은 그림을 크게 다시 보여줍니다.
-       나중에 다른 컷(표정·굿즈 적용 등)을 p02-01.jpg 같은 이름으로 올리고
-       아래에 줄을 추가하면 이어서 나옵니다.                            */
+    /* 커버는 두 캐릭터만 담은 그림, 상세에는 삼면도가 들어간 시트를 둡니다.
+       다른 컷(표정·굿즈 적용 등)은 p02-02.jpg 처럼 번호를 이어 올리고
+       아래에 줄을 추가하면 뒤이어 나옵니다.                            */
     images: [
-      { src: "assets/img/projects/p02-cover.jpg", caption: "캐릭터 시트 — 두 캐릭터의 앞 · 옆 · 뒤" }
+      { src: "assets/img/projects/p02-01.jpg", caption: "캐릭터 시트 — 두 캐릭터의 앞 · 옆 · 뒤" }
     ],
     featured: true
   },
