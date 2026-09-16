@@ -60,7 +60,7 @@ const PROJECTS = [
     title: "샘샘이와 룡룡이",
     category: ["캐릭터", "공모전"],          // ← 두 필터 모두에 표시됩니다
     year: "2026",
-    cover: "assets/img/projects/p02-cover.jpg",
+    cover: "assets/img/projects/p02-cover.png",   // 투명 배경 — 검은 카드 위에 그대로 얹힙니다
     summary: "교내 공모전 우수상 — 처음부터 만든 창작 캐릭터 샘샘이와 룡룡이",
 
     description: [
