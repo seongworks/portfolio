@@ -155,7 +155,7 @@ images: [
 │   ├── site.js         ★ 이름 · 이메일 · SNS
 │   └── projects.js     ★ 작업 목록
 │
-├── partials/           헤더 · 푸터 참고용 마크업
+├── partials/           (안 쓰는 참고용 파일 — 지워도 됩니다)
 │
 └── assets/
     ├── css/
