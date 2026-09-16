@@ -100,20 +100,25 @@ const PROJECTS = [
 
   {
     id: "p04",
-    title: "환경 캠페인 포스터",
-    category: ["광고 · 포스터 · 간판", "공모전"],   // ← 두 필터 모두에 표시됩니다
-    year: "2025",
-    cover: "assets/img/projects/p04-cover.svg",
-    summary: "청소년 환경 공모전 출품작 — 사진 없이 타이포만으로",
-    description: [
-      "청소년 환경 포스터 공모전에 낸 작업입니다. 자극적인 사진에 기대지 않고 글자만으로 메시지를 전달해보고 싶었습니다.",
-      "문장이 아래로 갈수록 작아지며 사라지는 구조로, '줄어드는 것'을 형태 자체로 보여주려 했습니다."
-    ],
+    title: "닭갈비 축제 리플렛",
+    category: "광고 · 포스터 · 간판",
+    year: "2025",                                  // ← 확인 필요
+    cover: "assets/img/projects/p04-cover.svg",    // ← 자리표시. 실제 그림 올리면 교체합니다
+
+    /* summary · description 을 비워 둔 이유
+       예전에 들어 있던 글은 사이트 템플릿의 견본 문구였고, 환경 포스터
+       이야기라 이 작업과 전혀 맞지 않아 지웠습니다. 사실이 아닌 설명이
+       실제 작업에 붙어 있는 것보다 비어 있는 편이 낫습니다.
+       비워두면 화면에 그 자리가 아예 나오지 않습니다.                  */
+    summary: "",
+    description: [],
+
     tools: ["Illustrator"],
-    images: [
-      { src: "assets/img/projects/p04-01.svg", caption: "출품 포스터" },
-      { src: "assets/img/projects/p04-02.svg", caption: "타이포 디테일" }
-    ],
+
+    /* 리플렛 사진을 p04-01.jpg, p04-02.jpg … 로 올린 뒤 아래에 줄을
+       추가하면 상세 페이지에 나옵니다. (접힌 면·펼친 면·인쇄물 사진 등) */
+    images: [],
+
     featured: false
   },
 
