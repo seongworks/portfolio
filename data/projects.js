@@ -149,7 +149,7 @@ const PROJECTS = [
     title: "토토",
     category: ["캐릭터", "공모전"],
     year: "2026",
-    cover: "assets/img/projects/p06-cover.jpg",
+    cover: "assets/img/projects/p06-cover.png",   // 투명 배경 — 검은 카드 위에 그대로 얹힙니다
 
     summary: "가야 탐험대 캐릭터 공모전 출품작 — 가야 토기에서 형태를 가져온 마스코트",
     description: [
@@ -160,12 +160,12 @@ const PROJECTS = [
 
     tools: ["Illustrator", "Photoshop"],
 
-    /* 시트를 먼저 크게 보여주고, 시트 안에서는 작게 들어가 있던 굿즈 목업을
-       뒤이어 원래 크기로 보여줍니다.                                      */
+    /* 커버는 토토 단독 그림, 상세에는 시트를 먼저 크게 보여주고
+       시트 안에서는 작게 들어가 있던 굿즈 목업을 뒤이어 원래 크기로 둡니다. */
     images: [
-      { src: "assets/img/projects/p06-cover.jpg", caption: "캐릭터 시트 — 턴어라운드 · 표정 6종 · 굿즈 목업" },
-      { src: "assets/img/projects/p06-01.jpg",    caption: "굿즈 적용 — 키링" },
-      { src: "assets/img/projects/p06-02.jpg",    caption: "굿즈 적용 — 티셔츠" }
+      { src: "assets/img/projects/p06-01.jpg", caption: "캐릭터 시트 — 턴어라운드 · 표정 6종 · 굿즈 목업" },
+      { src: "assets/img/projects/p06-02.jpg", caption: "굿즈 적용 — 키링" },
+      { src: "assets/img/projects/p06-03.jpg", caption: "굿즈 적용 — 티셔츠" }
     ],
 
     featured: false
