@@ -102,7 +102,7 @@ const PROJECTS = [
     id: "p04",
     title: "닭갈비 축제 리플렛",
     category: "광고 · 포스터 · 간판",
-    year: "2025",                                  // ← 확인 필요
+    year: "2026",
     cover: "assets/img/projects/p04-cover.svg",    // ← 자리표시. 실제 그림 올리면 교체합니다
 
     /* summary · description 을 비워 둔 이유
