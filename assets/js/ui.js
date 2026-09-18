@@ -101,3 +101,133 @@
     revealAll();
   }
 })();
+
+
+/* ==========================================================
+   사진 크게 보기 (라이트박스)
+   갤러리 사진을 누르면 새 탭으로 나가지 않고, 화면을 덮는 검은 판 위에
+   크게 띄웁니다. 설명은 사진 아래에 작게 붙습니다.
+
+   ※ 사진은 원래 <a href="그림파일"> 로 감싸여 있습니다.
+     아래 코드는 그 클릭을 가로채는 방식이라, 자바스크립트가 멈춰도
+     링크는 살아 있어 원본이 그냥 열립니다.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var gallery = document.querySelector(".project-gallery");
+  if (!gallery) return;
+
+  // 파일이 없어 지워지는 사진이 있으므로, 목록은 열 때마다 새로 셉니다.
+  function shots() {
+    return Array.prototype.slice.call(
+      gallery.querySelectorAll("figure:not([data-pending]) .shot")
+    );
+  }
+
+  var box = document.createElement("div");
+  box.className = "lightbox";
+  box.hidden = true;
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "사진 크게 보기");
+  box.innerHTML =
+    '<button class="lightbox__close" type="button" aria-label="닫기">✕</button>' +
+    '<button class="lightbox__nav is-prev" type="button" aria-label="이전 사진">‹</button>' +
+    '<button class="lightbox__nav is-next" type="button" aria-label="다음 사진">›</button>' +
+    '<figure class="lightbox__stage">' +
+      '<img alt="">' +
+      '<figcaption><span class="lightbox__text"></span>' +
+        '<a class="lightbox__raw" target="_blank" rel="noopener">원본 열기</a>' +
+        '<span class="lightbox__count"></span>' +
+      "</figcaption>" +
+    "</figure>";
+  document.body.appendChild(box);
+
+  var img     = box.querySelector("img");
+  var text    = box.querySelector(".lightbox__text");
+  var raw     = box.querySelector(".lightbox__raw");
+  var count   = box.querySelector(".lightbox__count");
+  var prevBtn = box.querySelector(".is-prev");
+  var nextBtn = box.querySelector(".is-next");
+
+  var list = [], at = 0, lastFocus = null;
+
+  function show(i) {
+    if (!list.length) return;
+    at = (i + list.length) % list.length;                 // 끝에서 처음으로 이어집니다
+    var shot = list[at];
+    var cap = shot.closest("figure").querySelector("figcaption");
+
+    img.src = shot.getAttribute("href");
+    img.alt = shot.querySelector("img").alt;
+    text.textContent = cap ? cap.textContent.trim() : "";
+    raw.href = shot.getAttribute("href");
+    count.textContent = list.length > 1 ? at + 1 + " / " + list.length : "";
+
+    var many = list.length > 1;
+    prevBtn.hidden = nextBtn.hidden = !many;
+
+    // 다음·이전 사진을 미리 받아두면 넘길 때 끊기지 않습니다.
+    [at + 1, at - 1].forEach(function (n) {
+      var s = list[(n + list.length) % list.length];
+      if (s && s !== shot) new Image().src = s.getAttribute("href");
+    });
+  }
+
+  function open(i) {
+    list = shots();
+    if (!list.length) return;
+    lastFocus = document.activeElement;
+    show(i);
+    box.hidden = false;
+    document.documentElement.style.overflow = "hidden";   // 뒤 페이지 스크롤 잠금
+    box.querySelector(".lightbox__close").focus();
+  }
+
+  function close() {
+    box.hidden = true;
+    img.removeAttribute("src");
+    document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  try {
+    // 갤러리에 위임해 두면 나중에 다시 그려진 사진도 그대로 동작합니다.
+    gallery.addEventListener("click", function (e) {
+      var shot = e.target.closest(".shot");
+      if (!shot) return;
+      var all = shots();
+      var i = all.indexOf(shot);
+      if (i === -1) return;
+      e.preventDefault();                                  // 새 탭으로 나가지 않게
+      open(i);
+    });
+
+    box.addEventListener("click", function (e) {
+      if (e.target.closest(".lightbox__raw")) return;       // 원본 열기는 그대로 통과
+      if (e.target.closest(".lightbox__close") || e.target === box) return close();
+      if (e.target.closest(".is-prev")) return show(at - 1);
+      if (e.target.closest(".is-next")) return show(at + 1);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (box.hidden) return;
+      if (e.key === "Escape")     { e.preventDefault(); close(); }
+      if (e.key === "ArrowLeft")  { e.preventDefault(); show(at - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); show(at + 1); }
+    });
+
+    // 휴대폰에서 좌우로 밀어 넘기기
+    var x0 = null;
+    box.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+  } catch (e) {
+    console.error("[ui.js] 사진 크게 보기를 켜지 못했습니다. 누르면 원본이 새 탭에서 열립니다.", e);
+  }
+})();
