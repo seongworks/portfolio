@@ -229,5 +229,26 @@ const PROJECTS = [
     ],
 
     featured: false
+  },
+
+  {
+    id: "p08",
+    title: "AI 굿즈 공모전",
+    category: ["캐릭터", "공모전"],
+    year: "2026",                                  // ← 확인 필요
+    cover: "assets/img/projects/p08-cover.jpg",
+
+    /* 한 줄 소개와 설명은 내용을 듣고 채웁니다.
+       비워두면 그 자리가 화면에 아예 나오지 않아 어색하지 않습니다.    */
+    summary: "",
+    description: [],
+
+    tools: [],                                     // ← 확인 필요
+
+    /* 다른 컷(다른 각도·굿즈 종류·시안 등)을 p08-01.jpg 처럼 올리고
+       아래에 줄을 추가하면 상세 페이지에 이어서 나옵니다.              */
+    images: [],
+
+    featured: false
   }
 ];
