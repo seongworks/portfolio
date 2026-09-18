@@ -222,7 +222,7 @@ section.project-gallery[hidden] { display: none; }
    그림이 작아 배지가 크게 느껴지지 않도록, 마우스를 올렸을 때만 보여줍니다. */
 .project-gallery .shot { display: block; position: relative; }
 .project-gallery .shot::after {
-  content: "원본 보기";
+  content: "크게 보기";
   position: absolute;
   inset: auto 8px 8px auto;
   padding: 5px 10px;
@@ -367,4 +367,106 @@ section.project-gallery[hidden] { display: none; }
 
 @media (max-width: 720px) {
   .contact-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ---- 사진 크게 보기 (라이트박스) --------------------------
+   갤러리 사진을 누르면 화면을 덮고 크게 띄웁니다.
+   설명은 사진 아래에 작게, 사진보다 눈에 덜 띄게 둡니다.
+   -------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;                          /* 헤더(100)보다 위 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(6, 6, 6, .94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: lightboxIn .22s var(--ease);
+}
+.lightbox[hidden] { display: none; }     /* display:flex 를 이겨야 합니다 */
+
+@keyframes lightboxIn { from { opacity: 0 } to { opacity: 1 } }
+
+.lightbox__stage {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 100%;
+  max-height: 100%;
+}
+.lightbox__stage img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 78vh;
+  max-height: 78svh;                     /* 주소창이 접히는 휴대폰 대응 */
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+
+/* 설명 — 작게, 가운데, 흐리게 */
+.lightbox__stage figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  max-width: 60ch;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+.lightbox__raw { text-decoration: underline; text-underline-offset: 3px; }
+.lightbox__raw:hover { color: var(--point); }
+.lightbox__count { font-variant-numeric: tabular-nums; opacity: .7; }
+
+/* 닫기 · 앞뒤 버튼 */
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: var(--point);
+  transition: background .25s var(--ease), border-color .25s var(--ease);
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(255, 255, 255, .16); border-color: var(--text-dim); }
+
+.lightbox__close {
+  top: clamp(12px, 3vw, 28px);
+  right: clamp(12px, 3vw, 28px);
+  width: 44px; height: 44px;
+  font-size: 15px;
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  font-size: 26px;
+  line-height: 1;
+  padding-bottom: 4px;                   /* 홑화살괄호 세로 중심 보정 */
+}
+.lightbox__nav.is-prev { left: clamp(8px, 2vw, 28px); }
+.lightbox__nav.is-next { right: clamp(8px, 2vw, 28px); }
+.lightbox__nav[hidden] { display: none; }
+
+/* 좁은 화면에서는 앞뒤 버튼을 아래쪽으로 내려 사진을 가리지 않게 합니다. */
+@media (max-width: 560px) {
+  .lightbox__nav { top: auto; bottom: 16px; transform: none; width: 44px; height: 44px; }
+  .lightbox__stage { padding-bottom: 52px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { animation: none; }
 }
