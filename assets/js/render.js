@@ -262,6 +262,17 @@
           );
         }).join("");
 
+        // link 를 적어둔 작업(직접 만든 웹사이트 등)에는 바로 열어볼 수 있는
+        // 버튼이 제목 아래에 붙습니다. link 가 없으면 아무것도 나오지 않습니다.
+        var live = p.link
+          ? '<p class="project-live">' +
+              '<a class="btn btn--live" href="' + esc(p.link) + '" target="_blank" rel="noopener">' +
+                esc(p.linkLabel || "사이트 보러 가기") +
+                ' <span class="btn-arrow" aria-hidden="true">↗</span>' +
+              "</a>" +
+            "</p>"
+          : "";
+
         var prev = LIST[i - 1];
         var next = LIST[i + 1];
         var link = function (t, side) {
@@ -277,6 +288,7 @@
               '<span class="t-label">' + esc(catText) + " · " + esc(p.year) + "</span>" +
               '<h1 class="t-h1">' + esc(p.title) + "</h1>" +
               (p.summary ? '<p class="t-body-lg" style="margin-top:20px;max-width:52ch">' + esc(p.summary) + "</p>" : "") +
+              live +
             "</section>" +
 
             '<section class="project-info" data-reveal>' +
@@ -288,10 +300,12 @@
               "</dl>" +
             "</section>" +
 
-            // gallery: "tiles" 를 적어둔 작업은 이모티콘·스티커처럼
-            // 작게, 밝은 바탕 위에 격자로 깔립니다. (data/projects.js 참고)
+            // gallery 항목으로 갤러리 모양을 바꿉니다. (data/projects.js 참고)
+            //   "tiles" — 이모티콘·스티커처럼 작게, 밝은 바탕 위에 격자로
+            //   "wide"  — 가로로 긴 화면 캡처를 두 장씩 나란히
             '<section class="project-gallery' +
-              (p.gallery === "tiles" ? " is-tiles" : "") + '" hidden>' + gallery + "</section>" +
+              (p.gallery === "tiles" ? " is-tiles" : "") +
+              (p.gallery === "wide" ? " is-wide" : "") + '" hidden>' + gallery + "</section>" +
 
             '<nav class="project-nav">' + link(prev, "Previous") + link(next, "Next") + "</nav>" +
           "</div>";

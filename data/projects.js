@@ -332,6 +332,9 @@ const PROJECTS = [
 
     tools: ["HTML", "CSS", "JavaScript", "Supabase"],
 
+    /* 화면 캡처는 가로로 길어서 조금 작게 — 두 장씩 나란히 놓입니다 */
+    gallery: "wide",
+
     images: [
       { src: "assets/img/projects/p11-cover.jpg", caption: "시작 화면 — 별명을 넣고 레벨을 고릅니다" },
       { src: "assets/img/projects/p11-01.jpg", caption: "초급 문제 — 빈칸에 함수 블록을 끼운 화면" },
