@@ -156,24 +156,6 @@
 .project-head { padding: clamp(48px, 8vw, 96px) 0 clamp(32px, 4vw, 48px); }
 .project-head .t-label { display: block; margin-bottom: 18px; }
 
-/* ---- 직접 만든 사이트를 열어보는 버튼 ----
-   data/projects.js 의 link 항목을 적어둔 작업에만 나타납니다.
-   보통 버튼(.btn)은 테두리만 있는데, 이건 눌러보라고 만든 자리라
-   흰 바탕으로 채워 한눈에 띄게 했습니다. */
-.project-live { margin-top: 28px; }
-
-.btn--live {
-  background: var(--point);
-  border-color: var(--point);
-  color: var(--bg);
-}
-.btn--live:hover {
-  background: transparent;
-  color: var(--point);
-}
-/* 바깥으로 나가는 링크라 화살표도 비스듬히 움직입니다 */
-.btn--live:hover .btn-arrow { transform: translate(3px, -3px); }
-
 .project-info {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
