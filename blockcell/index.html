@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>블록셀 — 블록으로 배우는 엑셀 함수</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+</head>
+<body>
+<div class="grid-bg" id="gridbg"></div>
+
+<!-- ════ START ════ -->
+<div class="screen on" id="screen-start">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <span class="eyebrow">EXCEL × BLOCK CODING</span>
+    <div class="title-row">
+      <h1>블록으로 배우는<br><span class="hl">엑셀 함수</span></h1>
+      <button class="rank-btn" onclick="openRanking()">🏆 랭킹 보기</button>
+    </div>
+    <p class="sub-txt">별명을 입력하고 레벨을 골라 시작하세요. 블록을 빈칸에 끼워 수식을 완성합니다.</p>
+    <div class="name-card">
+      <label for="nickname">별명</label>
+      <input type="text" id="nickname" maxlength="12" placeholder="예: 핑크공주 송호성" autocomplete="off">
+      <div class="input-note" id="input-note">이 브라우저에 기록이 저장됩니다.</div>
+    </div>
+    <p class="level-heading">레벨 선택</p>
+    <div class="level-grid">
+      <button class="lvl-btn basic" onclick="goLevel(&#39;basic&#39;)">
+        <span class="lvl-badge">LV 1</span>
+        <span class="lvl-name">초급자</span>
+        <span class="lvl-desc">SUM, AVERAGE 등 기본 함수로 시작합니다.</span>
+        <span class="lvl-accent"></span>
+      </button>
+      <button class="lvl-btn inter" onclick="goLevel(&#39;inter&#39;)">
+        <span class="lvl-badge">LV 2</span>
+        <span class="lvl-name">중급자</span>
+        <span class="lvl-desc">IF, VLOOKUP 등 조건·참조 함수를 다룹니다.</span>
+        <span class="lvl-accent"></span>
+      </button>
+      <button class="lvl-btn adv" onclick="goLevel(&#39;adv&#39;)">
+        <span class="lvl-badge">LV 3</span>
+        <span class="lvl-name">고급자</span>
+        <span class="lvl-desc">중첩 함수·배열 수식 등 고난도 도전.</span>
+        <span class="lvl-accent"></span>
+      </button>
+      <button class="lvl-btn hacker" onclick="goLevel(&#39;hacker&#39;)">
+        <span class="lvl-badge">LV X</span>
+        <span class="lvl-name">해커모드</span>
+        <span class="lvl-desc">동적 참조·복합 수식의 극한. 도전자만.</span>
+        <span class="lvl-accent"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ RANKING ════ -->
+<div class="screen" id="screen-ranking">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <button class="back-btn" onclick="showScreen('screen-start')">← 처음으로</button>
+    <span class="main-tag" style="color:var(--lime-d)">GLOBAL RANKING</span>
+    <h2 class="main-h2" style="margin-bottom:6px"><em style="font-style:normal;background:linear-gradient(transparent 62%,var(--lime-b) 62%)">온라인</em> 랭킹</h2>
+    <p class="main-desc">레벨별 상위 기록이에요. 전 세계 어디서 접속해도 같은 순위를 볼 수 있어요.</p>
+    <div class="rank-tabs">
+      <button class="rank-tab on" data-lv="basic" onclick="switchRankTab('basic')">초급자</button>
+      <button class="rank-tab" data-lv="inter" onclick="switchRankTab('inter')">중급자</button>
+      <button class="rank-tab" data-lv="adv" onclick="switchRankTab('adv')">고급자</button>
+      <button class="rank-tab" data-lv="hacker" onclick="switchRankTab('hacker')">해커모드</button>
+    </div>
+    <div class="rank-box">
+      <table class="rec-table" id="rank-table"></table>
+      <div class="rank-empty" id="rank-empty" style="display:none">아직 이 레벨의 기록이 없어요. 첫 기록의 주인공이 되어보세요!</div>
+      <div class="rank-loading" id="rank-loading">불러오는 중...</div>
+    </div>
+    <div class="admin-bar">
+      <button class="btn ghost admin-reset-btn" onclick="openResetModal()">🗑 이 레벨 랭킹 초기화</button>
+      <button class="admin-link" onclick="openPwModal()">관리자 비밀번호 변경</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MAIN BASIC ════ -->
+
+<div class="screen" id="screen-main-basic">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <button class="back-btn" onclick="goHome()">← 처음으로</button>
+    <span class="main-tag" style="color:var(--lime-d)">LV 1 · BEGINNER</span>
+    <h2 class="main-h2"><em style="font-style:normal;background:linear-gradient(transparent 62%,var(--lime-b) 62%)">초급자</em> 메인 메뉴</h2>
+    <p class="main-desc" id="basic-main-desc">블록을 끼워 수식을 완성하는 엑셀 함수 퀴즈입니다.</p>
+    <div class="menu-grid">
+      <button class="menu-card" onclick="startGame('practice')">
+        <span class="mc-icon">[✎]</span>
+        <span class="mc-title">연습문제</span>
+        <span class="mc-desc">팁을 보며 부담 없이 풀어보는 워밍업 문제 20개</span>
+      </button>
+      <button class="menu-card" onclick="startBasicGame()">
+        <span class="mc-icon">[▶]</span>
+        <span class="mc-title">문제 풀기</span>
+        <span class="mc-desc">ROUND·AVERAGE·LEFT·RIGHT·MID 기초 문제 20개</span>
+      </button>
+      <button class="menu-card" onclick="showLearnScreen()">
+        <span class="mc-icon">[fx]</span>
+        <span class="mc-title">학습하기</span>
+        <span class="mc-desc">함수 개념과 실전 예시를 선택해서 살펴보세요</span>
+      </button>
+    </div>
+    <div class="hud-row">
+      <div class="hud-cell">별명 <strong id="basic-name-hud">-</strong></div>
+      <div class="hud-cell">레벨 <strong>초급</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ LEARN ════ -->
+<div class="screen" id="screen-learn">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <button class="back-btn" onclick="backToMain()">← 메인으로</button>
+    <span class="main-tag" style="color:var(--lime-d)">학습하기 · LEARN</span>
+    <h2 class="main-h2" style="margin-bottom:6px"><em style="font-style:normal;background:linear-gradient(transparent 62%,var(--lime-b) 62%)">함수</em> 개념 사전</h2>
+    <p class="main-desc">배우고 싶은 함수를 골라 상세 설명과 예시를 확인하세요. 점수나 타이머가 없으니 천천히 살펴보세요.</p>
+    <div class="fn-list" id="fn-list"></div>
+    <div id="fn-detail-area"><div class="learn-placeholder">← 위에서 함수를 선택하면 상세 설명이 여기에 나타납니다</div></div>
+  </div>
+</div>
+
+<!-- ════ MAIN INTER ════ -->
+<div class="screen" id="screen-main-inter">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell" style="background:var(--red-t);color:var(--red-d)">fx</span>블록셀</div>
+    <button class="back-btn" onclick="goHome()">← 처음으로</button>
+    <span class="main-tag" style="color:var(--red-d)">LV 2 · INTERMEDIATE</span>
+    <h2 class="main-h2"><em style="font-style:normal;background:linear-gradient(transparent 62%,var(--red-b) 62%)">중급자</em> 메인 메뉴</h2>
+    <p class="main-desc">한 단계 더 나아갑니다. 조건 분기·참조 함수를 마스터하면 실무 엑셀의 절반은 해결됩니다.</p>
+    <div class="menu-grid">
+      <button class="menu-card" onclick="startGame(&#39;pinter&#39;)">
+        <span class="mc-icon" style="color:var(--red-d)">[✎]</span>
+        <span class="mc-title">연습문제</span>
+        <span class="mc-desc">팁을 보며 부담 없이 풀어보는 워밍업 문제 20개</span>
+      </button>
+      <button class="menu-card" onclick="startGame(&#39;inter&#39;)">
+        <span class="mc-icon" style="color:var(--red-d)">[▶]</span>
+        <span class="mc-title">문제 풀기</span>
+        <span class="mc-desc">VLOOKUP·IF·SUMIF·COUNTIF·RANK.EQ 문제</span>
+      </button>
+      <button class="menu-card" onclick="openLearn(&#39;inter&#39;)">
+        <span class="mc-icon" style="color:var(--red-d)">[fx]</span>
+        <span class="mc-title">학습하기</span>
+        <span class="mc-desc">중급 함수 개념과 실전 예시 학습</span>
+      </button>
+    </div>
+    <div class="hud-row">
+      <div class="hud-cell">별명 <strong id="inter-name-hud">-</strong></div>
+      <div class="hud-cell">레벨 <strong>중급</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MAIN ADV (고급자 · 흑백) ════ -->
+<div class="screen" id="screen-main-adv2">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell" style="background:var(--ink);color:var(--paper)">fx</span>블록셀</div>
+    <button class="back-btn" onclick="goHome()">← 처음으로</button>
+    <span class="main-tag" style="color:var(--ink)">LV 3 · ADVANCED</span>
+    <h2 class="main-h2"><em style="font-style:normal;background:var(--ink);color:var(--paper);padding:2px 10px;display:inline-block">고급자</em> 메인 메뉴</h2>
+    <p class="main-desc">흑과 백, 그리고 논리. 중첩 함수와 배열 수식으로 엑셀의 정점에 도전합니다.</p>
+    <div class="menu-grid">
+      <button class="menu-card" onclick="startGame(&#39;adv&#39;)">
+        <span class="mc-icon" style="color:var(--ink)">[▶]</span>
+        <span class="mc-title">문제 풀기</span>
+        <span class="mc-desc">함수를 합치는 중첩 수식 문제 (합성)</span>
+      </button>
+      <button class="menu-card" onclick="openLearn(&#39;adv&#39;)">
+        <span class="mc-icon" style="color:var(--ink)">[fx]</span>
+        <span class="mc-title">학습하기</span>
+        <span class="mc-desc">문제에 나올 합성 함수 패턴 학습</span>
+      </button>
+    </div>
+    <div class="hud-row">
+      <div class="hud-cell">별명 <strong id="adv-name-hud">-</strong></div>
+      <div class="hud-cell">레벨 <strong>고급</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MAIN HACKER (사이버펑크) ════ -->
+<div class="screen" id="screen-main-hacker">
+  <div class="cy-wrap">
+    <!-- 로고 -->
+    <div class="cy-logo">
+      <div class="cy-logo-cell">fx</div>
+      <span class="cy-logo-text">BLOCKCELL</span>
+      <span class="cy-logo-sub">// v3.0</span>
+    </div>
+
+    <button class="cy-back" onclick="goHome()">← EXIT_TO_HOME</button>
+
+    <span class="cy-eyebrow">// HACKER_MODULE · LV_X · UNLOCKED</span>
+
+    <h2 class="cy-title">
+      <span class="neon">해커모드</span><br>
+      <span style="color:var(--cy-text);font-size:.65em;letter-spacing:.04em">EXCEL FORMULA ARENA</span>
+    </h2>
+    <p class="cy-desc">
+      &gt; 최고 난도 직접 입력 모드 가동 중...<br>
+      &gt; 지금까지 배운 모든 함수를 중첩·조합<br>
+      &gt; 블록 없음 · 정답을 직접 수식으로 입력
+    </p>
+
+    <hr class="cy-divider">
+
+    <div class="cy-menu-grid" style="grid-template-columns:1fr">
+      <button class="cy-card" onclick="startGame('hacker')" style="cursor:pointer;text-align:left;border:none;width:100%">
+        <span class="cy-card-tag">// MODULE_01</span>
+        <span class="cy-card-icon">▶</span>
+        <span class="cy-card-title">PROBLEM_SET</span>
+        <span class="cy-card-desc">중첩 · 조합 · 직접 입력 — 최고 난도 8문제</span>
+      </button>
+    </div>
+
+    <div class="cy-hud">
+      <div class="cy-hud-cell">USER <strong id="hacker-name-hud">---</strong></div>
+      <div class="cy-hud-cell">LEVEL <strong style="color:var(--cy-mag)">ADV</strong></div>
+      <div class="cy-hud-cell">STATUS <strong style="color:var(--cy-yellow)">STANDBY</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ LESSON ════ -->
+<div class="screen" id="screen-lesson">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="prog-meta"><span id="pm-left">문제 1/20</span><span id="pm-right">SUM · 기초</span></div>
+    <div class="lesson-card">
+      <div class="lesson-tag" id="lesson-tag">함수 1/5</div>
+      <h2><span class="fn-chip" id="lesson-fn">SUM</span> <span id="lesson-title"></span></h2>
+      <p class="lesson-oneline" id="lesson-oneline"></p>
+      <p class="lesson-desc" id="lesson-desc"></p>
+      <div class="example-box">
+        <div class="ex-lbl">예시</div>
+        <div class="ex-f" id="lesson-exf"></div>
+        <div class="ex-r" id="lesson-exr"></div>
+      </div>
+      <button class="btn" id="btn-lesson-next">문제 풀러 가기 <span class="arr">→</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PROBLEM ════ -->
+<div class="screen" id="screen-problem">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <div class="progress-bar" id="progress-bar2"></div>
+    <div class="prog-meta"><span id="pm-left2">문제 1/20</span><span id="pm-right2">SUM · 기초</span></div>
+    <div class="prob-card">
+      <div class="prob-head">
+        <span class="lv-badge basic" id="prob-lv-badge">기초 1</span>
+        <span class="timer-row"><span id="prob-time">0초</span><span class="bonus-txt" id="prob-bonus">보너스 +100</span><button class="tip-btn" id="btn-tip" onclick="showTip()" style="display:none">💡 팁 보기</button></span>
+        <button class="give-up-btn" onclick="showGiveUp()">포기하기</button>
+      </div>
+      <div class="tip-box" id="tip-box" style="display:none"></div>
+      <p class="prob-q" id="prob-q"></p>
+      <div class="prob-grid">
+        <div class="sheet-col">
+          <div class="sheet-lbl">스프레드시트</div>
+          <div id="prob-sheet"></div>
+          <div class="result-wrap">
+            <div class="result-cell" id="result-cell">
+              <span id="result-formula">결과</span><span id="result-val">= ?</span>
+            </div>
+          </div>
+        </div>
+        <div class="asm-col">
+          <div class="assembly" id="assembly"></div>
+          <div id="palette-area">
+            <div class="pal-lbl">블록을 눌러 빈칸에 넣으세요 · 채운 칸을 누르면 빠집니다</div>
+            <div class="palette" id="palette"></div>
+          </div>
+          <div class="typed-row" id="typed-area" style="display:none">
+            <input type="text" id="typed-input" placeholder="수식을 직접 입력하세요 (= 부터)" autocomplete="off">
+          </div>
+          <div class="action-row">
+            <button class="btn" id="btn-check">확인</button>
+            <button class="btn ghost" id="btn-next" style="display:none">다음 →</button>
+            <span class="feedback" id="feedback"></span>
+          </div>
+          <!-- 해석 보기 (고급자 전용) -->
+          <div class="hint-row" id="hint-row" style="display:none">
+            <button class="hint-btn" id="btn-hint" onclick="showHint()">💡 해석 보기 <span class="hint-warn">(점수 0점)</span></button>
+            <div class="hint-box" id="hint-box" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ END ════ -->
+<div class="screen" id="screen-end">
+  <div class="wrap">
+    <div class="logo"><span class="logo-cell">fx</span>블록셀</div>
+    <div class="end-wrap">
+      <div class="trophy">fx</div>
+      <h2>20문제 완주!</h2>
+      <div class="end-name-lbl" id="end-name-lbl"></div>
+      <div class="end-score"><span id="end-score-v">0</span><span class="end-unit"> 점</span></div>
+      <div class="rec-msg" id="rec-msg"></div>
+    </div>
+    <div class="breakdown" id="breakdown"></div>
+    <div class="rec-box">
+      <h4>이 브라우저의 기록 (상위 5명)</h4>
+      <table class="rec-table" id="rec-table"></table>
+    </div>
+    <div class="end-actions">
+      <button class="btn" id="btn-retry">다시 도전</button>
+      <button class="btn ghost" id="btn-to-main">초급 메뉴로</button>
+      <button class="btn ghost" id="btn-to-home">처음으로</button>
+    </div>
+  </div>
+</div>
+
+<!-- 포기 오버레이 -->
+<div class="overlay" id="give-up-overlay">
+  <div class="overlay-card">
+    <h3>정말 포기하시겠어요?</h3>
+    <p>지금까지의 기록은 저장되지 않습니다. 초급자 메인 메뉴로 돌아갑니다.</p>
+    <div class="ov-actions">
+      <button class="btn" style="background:var(--red);border-color:var(--red);box-shadow:3px 3px 0 var(--red-d)" onclick="confirmGiveUp()">포기하기</button>
+      <button class="btn ghost" onclick="closeGiveUp()">계속 풀기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ 관리자: 랭킹 초기화 모달 ════ -->
+<div class="overlay" id="reset-overlay">
+  <div class="overlay-card">
+    <h3>🗑 <span id="reset-lv-name">초급자</span> 랭킹 초기화</h3>
+    <p>이 레벨의 온라인 랭킹 기록이 <strong>전부 삭제</strong>됩니다. 되돌릴 수 없어요. 계속하려면 관리자 비밀번호를 입력하세요.</p>
+    <label class="ov-label" for="reset-pw">관리자 비밀번호</label>
+    <input type="password" class="ov-input" id="reset-pw" autocomplete="off" placeholder="비밀번호 입력">
+    <div class="ov-msg" id="reset-msg"></div>
+    <div class="ov-actions">
+      <button class="btn" id="reset-go" style="background:var(--red);border-color:var(--red);box-shadow:3px 3px 0 var(--red-d)" onclick="confirmReset()">초기화</button>
+      <button class="btn ghost" onclick="closeResetModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ 관리자: 비밀번호 변경 모달 ════ -->
+<div class="overlay" id="pw-overlay">
+  <div class="overlay-card">
+    <h3>🔑 관리자 비밀번호 변경</h3>
+    <p>기존 비밀번호를 알고 있어야만 변경할 수 있습니다.</p>
+    <label class="ov-label" for="pw-old">기존 비밀번호</label>
+    <input type="password" class="ov-input" id="pw-old" autocomplete="off">
+    <label class="ov-label" for="pw-new">새 비밀번호 (4자 이상)</label>
+    <input type="password" class="ov-input" id="pw-new" autocomplete="off">
+    <label class="ov-label" for="pw-new2">새 비밀번호 확인</label>
+    <input type="password" class="ov-input" id="pw-new2" autocomplete="off">
+    <div class="ov-msg" id="pw-msg"></div>
+    <div class="ov-actions">
+      <button class="btn" id="pw-go" onclick="confirmPwChange()">변경하기</button>
+      <button class="btn ghost" onclick="closePwModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/leaderboard.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+</body></html>
