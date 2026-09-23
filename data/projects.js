@@ -305,5 +305,46 @@ const PROJECTS = [
     ],
 
     featured: false
+  },
+
+  /* ---------------------------------------------------------------- */
+  {
+    id: "p11",
+    title: "블록셀 — 블록으로 배우는 엑셀 함수",
+    category: "웹 디자인",
+    year: "2026",
+    cover: "assets/img/projects/p11-cover.jpg",
+
+    /* 이 작업은 실제로 돌아가는 사이트입니다.
+       파일은 이 저장소의 blockcell/ 폴더에 그대로 들어 있습니다. */
+    link: "blockcell/",
+    linkLabel: "사이트 직접 해보기",
+
+    summary: "엑셀 함수를 블록으로 끼워 맞추며 배우는 학습 웹사이트",
+    description: [
+      "엑셀 함수를 블록 코딩처럼 익히는 학습용 웹사이트입니다. 빈칸이 뚫린 수식이 화면에 놓이고, 아래에 흩어진 블록을 눌러 그 자리에 끼워 넣으면 수식이 완성됩니다. 함수 이름을 외워서 타이핑하는 대신 구조부터 눈에 익히게 하려고 이렇게 만들었습니다.",
+      "초급자 · 중급자 · 고급자 · 해커모드 네 단계로 나눴습니다. 초급은 ROUND · AVERAGE · LEFT · RIGHT · MID, 중급은 VLOOKUP · IF · SUMIF · COUNTIF · RANK.EQ, 고급은 함수를 겹쳐 쓰는 중첩 수식을 다룹니다. 마지막 해커모드에는 블록이 없고 수식을 직접 입력해야 합니다.",
+      "레벨마다 화면 색을 통째로 갈아 끼웠습니다. 초급은 연두, 중급은 빨강, 고급은 흑백, 해커모드는 검은 바탕의 네온입니다. 지금 몇 단계에 있는지 글씨를 읽지 않아도 알게 하려는 장치입니다.",
+      "문제마다 시간이 흐를수록 보너스 점수가 깎이고, 세 번 틀리면 정답이 펼쳐집니다. 연습문제에는 팁 버튼을 달았고, 점수도 시간도 없이 함수 설명만 찾아보는 '학습하기' 화면을 따로 두어 부담 없이 들어올 구멍을 만들었습니다.",
+      "완주 점수는 레벨별 온라인 랭킹에 올라갑니다. 어느 기기에서 접속해도 같은 순위가 보이도록 기록은 서버에 저장했고, 랭킹 초기화 같은 관리 기능은 비밀번호를 확인한 뒤 서버에서만 실행되도록 브라우저와 분리했습니다.",
+      "휴대폰에서는 표와 블록이 위아래로 자리를 바꿔, 좁은 화면에서도 한 손으로 풀 수 있습니다."
+    ],
+
+    tools: ["HTML", "CSS", "JavaScript", "Supabase"],
+
+    images: [
+      { src: "assets/img/projects/p11-cover.jpg", caption: "시작 화면 — 별명을 넣고 레벨을 고릅니다" },
+      { src: "assets/img/projects/p11-01.jpg", caption: "초급 문제 — 빈칸에 함수 블록을 끼운 화면" },
+      { src: "assets/img/projects/p11-02.jpg", caption: "초급자 메인 메뉴" },
+      { src: "assets/img/projects/p11-03.jpg", caption: "연습문제 — 팁을 펼친 화면" },
+      { src: "assets/img/projects/p11-04.jpg", caption: "중급 — VLOOKUP 문제" },
+      { src: "assets/img/projects/p11-05.jpg", caption: "고급 — 함수를 겹쳐 쓰는 중첩 수식" },
+      { src: "assets/img/projects/p11-06.jpg", caption: "해커모드 메인 화면" },
+      { src: "assets/img/projects/p11-07.jpg", caption: "해커모드 — 블록 없이 수식을 직접 입력" },
+      { src: "assets/img/projects/p11-08.jpg", caption: "학습하기 — 함수 개념 사전" },
+      { src: "assets/img/projects/p11-09.jpg", caption: "휴대폰 화면" }
+    ],
+
+    featured: false
   }
 ];
