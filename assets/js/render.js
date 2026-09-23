@@ -288,10 +288,12 @@
               "</dl>" +
             "</section>" +
 
-            // gallery: "tiles" 를 적어둔 작업은 이모티콘·스티커처럼
-            // 작게, 밝은 바탕 위에 격자로 깔립니다. (data/projects.js 참고)
+            // gallery 항목으로 갤러리 모양을 바꿉니다. (data/projects.js 참고)
+            //   "tiles" — 이모티콘·스티커처럼 작게, 밝은 바탕 위에 격자로
+            //   "wide"  — 가로로 긴 화면 캡처를 두 장씩 나란히
             '<section class="project-gallery' +
-              (p.gallery === "tiles" ? " is-tiles" : "") + '" hidden>' + gallery + "</section>" +
+              (p.gallery === "tiles" ? " is-tiles" : "") +
+              (p.gallery === "wide" ? " is-wide" : "") + '" hidden>' + gallery + "</section>" +
 
             '<nav class="project-nav">' + link(prev, "Previous") + link(next, "Next") + "</nav>" +
           "</div>";
