@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>포트폴리오 — 인쇄용</title>
+<meta name="robots" content="noindex">
+
+<!-- ★ 인쇄 전용 페이지입니다.
+     사이트 본문과 달리 흰 바탕 · 검은 글씨로 나옵니다.
+
+     PDF 로 뽑는 법
+       이 페이지에서 Ctrl + P (맥은 Cmd + P)
+       → 대상: PDF 로 저장
+       → 용지: A4
+       → 여백: 없음
+       → 배경 그래픽: 켬
+     내용은 data/projects.js 에서 그대로 가져옵니다.
+     작업을 추가하면 이 페이지도 자동으로 따라옵니다.             -->
+
+<!-- 인쇄용 서체는 Noto Sans KR 입니다.
+     사이트 본문(Pretendard)과 다른 서체를 쓰는 이유 — 종이에서 획이 또렷하고,
+     어느 컴퓨터에서 뽑아도 같은 모양으로 나옵니다. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+
+<script src="data/site.js"></script>
+<script src="data/projects.js"></script>
+<script src="assets/js/print.js"></script>
+</body>
+</html>
