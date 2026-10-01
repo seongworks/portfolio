@@ -71,21 +71,24 @@
           "<span>" + esc(p.year) + "</span>" +
         "</div>" +
 
-        '<div class="e-art' + (shots.length === 1 ? " is-single" : "") + '">' +
-          shots.map(function (im) {
-            return (
-              "<figure>" +
-                '<img src="' + esc(im.src) + '" alt="">' +
-                (im.caption ? "<figcaption>" + esc(im.caption) + "</figcaption>" : "") +
-              "</figure>"
-            );
-          }).join("") +
+        '<div class="e-main">' +
+          '<div class="e-art">' +
+            shots.map(function (im) {
+              return (
+                "<figure>" +
+                  '<img src="' + esc(im.src) + '" alt="">' +
+                  (im.caption ? "<figcaption>" + esc(im.caption) + "</figcaption>" : "") +
+                "</figure>"
+              );
+            }).join("") +
+          "</div>" +
+
+          '<div class="e-text">' +
+            '<h1 class="e-title">' + esc(p.title) + "</h1>" +
+            (p.summary ? '<p class="e-lead">' + esc(p.summary) + "</p>" : "") +
+            '<div class="e-body">' + body + "</div>" +
+          "</div>" +
         "</div>" +
-
-        '<h1 class="e-title">' + esc(p.title) + "</h1>" +
-        (p.summary ? '<p class="e-lead">' + esc(p.summary) + "</p>" : "") +
-
-        '<div class="e-body">' + body + "</div>" +
 
         '<div class="e-foot">' +
           '<div class="meta">' +
@@ -117,16 +120,23 @@
   var PX_PER_MM = 96 / 25.4;
 
   function sizeArt(panel) {
+    var main = panel.querySelector(".e-main");
     var art = panel.querySelector(".e-art");
-    if (!art) return;
+    if (!main || !art) return;
 
     var figs = Array.prototype.slice.call(art.querySelectorAll("figure"));
     if (!figs.length) return;
 
-    var maxW = art.clientWidth;
-    var maxH = art.clientHeight;
     var gap  = 5 * PX_PER_MM;
     var capH = 5 * PX_PER_MM;          // 캡션이 차지하는 높이(대략)
+    var gutter = 14 * PX_PER_MM;
+
+    // 작품에 내줄 수 있는 최대 폭 — 나머지는 글 자리입니다.
+    // 글이 너무 좁아지면 제목이 잘리므로 최소 폭을 지켜줍니다.
+    var minText = 130 * PX_PER_MM;
+    var maxW = Math.min(main.clientWidth * 0.58,
+                        main.clientWidth - gutter - minText);
+    var maxH = main.clientHeight;
 
     var items = figs.map(function (f) {
       var im = f.querySelector("img");
@@ -137,12 +147,18 @@
       };
     });
 
+    // 그림이 다 놓이면 그 폭만큼만 작품 칸이 차지하게 합니다.
+    // 세로로 긴 포스터면 칸이 좁아지고, 그만큼 글 쪽이 넓어집니다.
+    function claim(w) { art.style.width = Math.ceil(w) + "px"; }
+
     if (items.length === 1) {
       // 한 장 — 자리 안에 들어가는 최대 크기
       var it = items[0];
       var h = Math.min(maxH - (it.cap ? capH : 0), maxW / it.a);
+      var w = h * it.a;
       it.im.style.height = h + "px";
-      it.im.style.width = (h * it.a) + "px";
+      it.im.style.width = w + "px";
+      claim(w);
       return;
     }
 
@@ -168,7 +184,7 @@
     rest.forEach(function (x) {
       var h2 = restH / rest.length;
       var w2 = h2 * x.a;
-      if (w2 > maxW * 0.46) { w2 = maxW * 0.46; h2 = w2 / x.a; }
+      if (w2 > maxW * 0.52) { w2 = maxW * 0.52; h2 = w2 / x.a; }
       x.im.style.height = h2 + "px";
       x.im.style.width = w2 + "px";
       // 주 사진은 왼쪽 끝, 보조 사진은 오른쪽 끝 — 빈 자리가 한쪽으로
@@ -176,6 +192,8 @@
       x.im.parentNode.style.alignSelf = "flex-end";
       x.im.parentNode.style.textAlign = "right";
     });
+
+    claim(leadW);
   }
 
   function layout() {
